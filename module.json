@@ -22,13 +22,13 @@
 		
 	],
 	"esmodules": [
-		"/scripts/module.js"
+		"/scripts/card-slayer.js"
 	],
 	"scripts": [
 		"/scripts/lib/lib.js"
 	],
 	"styles": [
-		"/styles/module.css"
+		"/styles/card-slayer.css"
 	],
 	"languages": [
 		{

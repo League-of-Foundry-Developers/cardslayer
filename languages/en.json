@@ -1,3 +1,5 @@
 {
-    "MODULE.hello": "hello"
+    "card-slayer": {
+        "title": "CardSlayer"
+    }
 }
