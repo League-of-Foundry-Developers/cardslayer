@@ -1,3 +1,7 @@
+![](https://img.shields.io/badge/Foundry-v9-informational)
+![CardSlayer](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Fleague-repo-status%2Fshields-endpoint%2Fcard-slayer.json)
+
+
 Before this decade is out, we will put cards on the Foundry VTT canvas. We choose to do this not because it is easy, but because Foundry gave enough stuff to make us think it is easy.
 
 **Basic architecture:**
@@ -7,8 +11,9 @@ Before this decade is out, we will put cards on the Foundry VTT canvas. We choos
 3) library (In League Org maybe?)
 4) overwrite canvas drop handling to better work with handling embedded document drops
 5) no #@!$ing typscript
+6) TABS not spaces
 
-![](https://img.shields.io/badge/Foundry-v0.8.6-informational)
+
 <!--- Downloads @ Latest Badge -->
 <!--- replace <user>/<repo> with your username/repository -->
 <!--- ![Latest Release Download Count](https://img.shields.io/github/downloads/<user>/<repo>/latest/module.zip) -->
