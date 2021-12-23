@@ -1,3 +1,13 @@
+Before this decade is out, we will put cards on the Foundry VTT canvas. We choose to do this not because it is easy, but because Foundry gave enough stuff to make us think it is easy.
+
+**Basic architecture:**
+
+1) New placeables layer that all user levels can access
+2) Create new placeable type based off of PlaceableObject directly and steal stuff from Tile and whatever we need
+3) library (In League Org maybe?)
+4) overwrite canvas drop handling to better work with handling embedded document drops
+5) no #@!$ing typscript
+
 ![](https://img.shields.io/badge/Foundry-v0.8.6-informational)
 <!--- Downloads @ Latest Badge -->
 <!--- replace <user>/<repo> with your username/repository -->
