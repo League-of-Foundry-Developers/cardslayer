@@ -6,3 +6,11 @@ Hooks.on("init", () => {
 		group: "interface"
 	};
 });
+
+Hooks.on("ready", () => {
+
+	if (!(canvas.scene.getFlag("card-slayer", "cards"))) {
+		canvas.scene.setFlag("card-slayer", "cards", [])
+	}
+})
+
