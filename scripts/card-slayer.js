@@ -1,7 +1,3 @@
-/**
- * ES6 module imports
- */
-
 import CardSlayer from "./CardSlayer.js";
 import CardPlaceable from "./CardPlaceable.js";
 import PlaceableCard from "./PlaceableCard.js";
@@ -69,4 +65,13 @@ function extendClasses() {
 	});
 
 
+	// Add a property to Cards that checks if the associated scene
+	// is visible
+	Object.defineProperty(CONFIG.Cards.documentClass.prototype, "isView", {
+		/** @return {boolean} Whether or not the associated scene is visible */
+		get: function () {
+			const id = this.getFlag("card-slayer", "scene");
+			return game.scenes.get(id)?.isView || false;
+		}
+	});
 }
