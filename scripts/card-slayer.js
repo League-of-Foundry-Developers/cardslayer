@@ -4,6 +4,7 @@
 
 import CardSlayer from "./CardSlayer.js";
 import CardPlaceable from "./CardPlaceable.js";
+import PlaceableCard from "./PlaceableCard.js";
 
 /**
  * Hook on initialization to establish the cardslayer as a
@@ -11,6 +12,7 @@ import CardPlaceable from "./CardPlaceable.js";
  */
 Hooks.on("init", () => {
 	setUpLayer();
+	extendClasses();
 });
 
 
@@ -26,10 +28,12 @@ function setUpLayer() {
 }
 
 /**
- * Hook on ready to check if the scene has an established
- * set of cardslayer flags, if it doesn't, create an empty
- * object for one.
+ * Extend the Card, Cards, and CardData classes to allow
+ * them to function in the canvas environment.
  */
+function extendClasses() {
+	// Replace the Card class with an extended version
+	CONFIG.Card.documentClass = PlaceableCard;
 
 
 Hooks.on("ready", () => {
@@ -40,3 +44,5 @@ Hooks.on("ready", () => {
 
 })
 
+
+}
