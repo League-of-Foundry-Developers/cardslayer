@@ -3,6 +3,7 @@
  */
 
 import CardSlayer from "./CardSlayer.js";
+import CardPlaceable from "./CardPlaceable.js";
 
 /**
  * Hook on initialization to establish the cardslayer as a
