@@ -8,13 +8,21 @@ import CardSlayer from "./CardSlayer.js";
  * Hook on initialization to establish the cardslayer as a
  * viable canvas layer to store the display data for placed cards
  */
-
 Hooks.on("init", () => {
+	setUpLayer();
+});
+
+
+/**
+ * Add the cardslayer to the canvas
+ */
+function setUpLayer() {
 	CONFIG.Canvas.layers["cardslayer"] = {
 		layerClass: CardSlayer,
-		group: "interface"
+		group: "primary"
 	};
-});
+	CONFIG.Card.objectClass = CardPlaceable;
+}
 
 /**
  * Hook on ready to check if the scene has an established
