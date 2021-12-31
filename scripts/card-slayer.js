@@ -35,14 +35,38 @@ function extendClasses() {
 	// Replace the Card class with an extended version
 	CONFIG.Card.documentClass = PlaceableCard;
 
+	// Add property getters to obtain data from flags as if it
+	// were a part of the data schema
+	Object.defineProperty(foundry.data.CardData.prototype, "x", {
+		/** @return {number} The y coordinate of the card, taken from flags */
+		get: function () {
+			return this.flags["card-slayer"]?.x || 0;
+		}
+	});
 
-Hooks.on("ready", () => {
+	Object.defineProperty(foundry.data.CardData.prototype, "y", {
+		/** @return {number} The y coordinate of the card, taken from flags */
+		get: function () {
+			return this.flags["card-slayer"]?.y || 0;
+		}
+	});
 
-	if (!(canvas.scene.getFlag("card-slayer", "cards"))) {
-		canvas.scene.setFlag("card-slayer", "cards", {})
-	}
+	Object.defineProperty(foundry.data.CardData.prototype, "hidden", {
+		/** @return {boolean} The hidden status of the card, taken from flags */
+		get: function () {
+			return this.flags["card-slayer"]?.hidden || false;
+		}
+	});
 
-})
+	Object.defineProperty(foundry.data.CardData.prototype, "img", {
+		/** 
+		 * @return {string} The image path to the card image for the visible face, 
+		 * taken from the parent document img getter 
+		 */
+		get: function () {
+			return this.document.img || "";
+		}
+	});
 
 
 }
