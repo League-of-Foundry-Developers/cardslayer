@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/Foundry-v9-informational)
-![CardSlayer](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Fleague-repo-status%2Fshields-endpoint%2Fcard-slayer.json)
+![CardSlayer](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2FLeague-of-Foundry-Developers%2Fleague-repo-status%2Fshields-endpoint%2Fcardslayer.json)
 
 ![](assets/cardslayer.png)
 

@@ -1,5 +1,5 @@
 {
-	"name": "card-slayer",
+	"name": "cardslayer",
 	"title": "CardSlayer",
 	"description": "A library for placeable cards on the canvas.",
 	"version": "This is auto replaced",
@@ -28,13 +28,13 @@
 		
 	],
 	"esmodules": [
-		"/scripts/card-slayer.js"
+		"/scripts/cardslayer.js"
 	],
 	"scripts": [
 		"/scripts/lib/lib.js"
 	],
 	"styles": [
-		"/styles/card-slayer.css"
+		"/styles/cardslayer.css"
 	],
 	"languages": [
 		{
@@ -49,7 +49,7 @@
 	"media": [
 		{
 			"type": "icon",
-			"url": "https://raw.githubusercontent.com/League-of-Foundry-Developers/card-slayer/master/assets/cardslayer.png"
+			"url": "https://raw.githubusercontent.com/League-of-Foundry-Developers/cardslayer/master/assets/cardslayer.png"
 		}
 	]
 }

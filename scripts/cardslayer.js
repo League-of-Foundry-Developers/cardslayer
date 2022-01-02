@@ -1,4 +1,4 @@
-import CardSlayer from "./CardSlayer.js";
+import CardLayer from "./CardLayer.js";
 import CardPlaceable from "./CardPlaceable.js";
 import PlaceableCard from "./PlaceableCard.js";
 
@@ -17,7 +17,7 @@ Hooks.on("init", () => {
  */
 function setUpLayer() {
 	CONFIG.Canvas.layers["cardslayer"] = {
-		layerClass: CardSlayer,
+		layerClass: CardLayer,
 		group: "primary"
 	};
 	CONFIG.Card.objectClass = CardPlaceable;
@@ -57,7 +57,7 @@ function extendClasses() {
 
 	Object.defineProperty(Scene.prototype, "cardContainer", {
 		get: function () {
-			return game.cards.find(c => c.getFlag("card-slayer", "scene") == this.id);
+			return game.cards.find(c => c.getFlag("cardslayer", "scene") == this.id);
 		}
 	});
 
@@ -76,9 +76,9 @@ function extendClasses() {
 		const cls = foundry.documents.BaseCard.implementation;
 
 		updates = updates.map(update => {
-			if (update.x) update["flags.card-slayer.x"] = update.x;
-			if (update.y) update["flags.card-slayer.y"] = update.y;
-			if (update.hidden) update["flags.card-slayer.hidden"] = update.hidden;
+			if (update.x) update["flags.cardslayer.x"] = update.x;
+			if (update.y) update["flags.cardslayer.y"] = update.y;
+			if (update.hidden) update["flags.cardslayer.hidden"] = update.hidden;
 			return update;
 		});
 
@@ -90,30 +90,30 @@ function extendClasses() {
 	Object.defineProperty(foundry.data.CardData.prototype, "x", {
 		/** @return {number} The y coordinate of the card, taken from flags */
 		get: function () {
-			return this.flags["card-slayer"]?.x || 0;
+			return this.flags["cardslayer"]?.x || 0;
 		},
 		set: function (value) {;
-			this.flags["card-slayer"].x = value;
+			this.flags["cardslayer"].x = value;
 		}
 	});
 
 	Object.defineProperty(foundry.data.CardData.prototype, "y", {
 		/** @return {number} The y coordinate of the card, taken from flags */
 		get: function () {
-			return this.flags["card-slayer"]?.y || 0;
+			return this.flags["cardslayer"]?.y || 0;
 		},
 		set: function (value) {
-			this.flags["card-slayer"].y = value;
+			this.flags["cardslayer"].y = value;
 		}
 	});
 
 	Object.defineProperty(foundry.data.CardData.prototype, "hidden", {
 		/** @return {boolean} The hidden status of the card, taken from flags */
 		get: function () {
-			return this.flags["card-slayer"]?.hidden || false;
+			return this.flags["cardslayer"]?.hidden || false;
 		},
 		set: function (value) {
-			this.flags["card-slayer"].hidden = value;
+			this.flags["cardslayer"].hidden = value;
 		}
 	});
 
@@ -133,7 +133,7 @@ function extendClasses() {
 	Object.defineProperty(CONFIG.Cards.documentClass.prototype, "isView", {
 		/** @return {boolean} Whether or not the associated scene is visible */
 		get: function () {
-			const id = this.getFlag("card-slayer", "scene");
+			const id = this.getFlag("cardslayer", "scene");
 			return game.scenes.get(id)?.isView || false;
 		}
 	});
