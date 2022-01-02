@@ -1,6 +1,6 @@
 import CardPlaceable from "./CardPlaceable.js";
 
-export default class CardSlayer extends PlaceablesLayer {
+export default class CardLayer extends PlaceablesLayer {
 	constructor() {
 		super();
 
@@ -28,11 +28,11 @@ export default class CardSlayer extends PlaceablesLayer {
 	 *
 	 * @type {Cards}
 	 * @readonly
-	 * @memberof CardSlayer
+	 * @memberof CardLayer
 	 */
 	get cardPile() {
 		if (!this._cardPile) {
-			this._cardPile = game.cards.find(c => c.getFlag("card-slayer", "scene") == canvas.scene.id);
+			this._cardPile = game.cards.find(c => c.getFlag("cardslayer", "scene") == canvas.scene.id);
 		}
 		return this._cardPile;
 	}
