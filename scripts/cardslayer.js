@@ -31,6 +31,7 @@ function extendClasses() {
 	// Replace the Card class with an extended version
 	CONFIG.Card.documentClass = PlaceableCard;
 
+	// Extend the Scene class with some additional properties
 	Object.defineProperty(Scene.prototype, "cardContainer", {
 		get: function () {
 			return game.cards.find(c => c.getFlag("cardslayer", "scene") == this.id);
@@ -43,6 +44,8 @@ function extendClasses() {
 		}
 	});
 
+	// Override this method to correctly handle updates to the Cards container
+	// Additionally, re-write updates for certain properties to flags instead
 	const updateEmbeddedDocuments = Scene.prototype.updateEmbeddedDocuments;
 	Scene.prototype.updateEmbeddedDocuments = async function(embeddedName, updates = [], context = {}) {
 		if (embeddedName !== "Card") return await updateEmbeddedDocuments.call(this, embeddedName, updates, context);
