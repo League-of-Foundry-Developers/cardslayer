@@ -31,30 +31,6 @@ function extendClasses() {
 	// Replace the Card class with an extended version
 	CONFIG.Card.documentClass = PlaceableCard;
 
-/*	Object.defineProperty(Scene, "metadata", {
-		get: function() {
-			return mergeObject(foundry.abstract.Document.metadata, {
-				name: "Scene",
-				collection: "scenes",
-				label: "DOCUMENT.Scene",
-				labelPlural: "DOCUMENT.Scenes",
-				isPrimary: true,
-				embedded: {
-					AmbientLight: foundry.documents.BaseAmbientLight,
-					AmbientSound: foundry.documents.BaseAmbientSound,
-					Drawing: foundry.documents.BaseDrawing,
-					MeasuredTemplate: foundry.documents.BaseMeasuredTemplate,
-					Note: foundry.documents.BaseNote,
-					Tile: foundry.documents.BaseTile,
-					Token: foundry.documents.BaseToken,
-					Wall: foundry.documents.BaseWall,
-					Card: foundry.documents.BaseCard
-				}
-			});
-		}
-	});
-*/
-
 	Object.defineProperty(Scene.prototype, "cardContainer", {
 		get: function () {
 			return game.cards.find(c => c.getFlag("cardslayer", "scene") == this.id);
