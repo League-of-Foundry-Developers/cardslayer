@@ -31,12 +31,69 @@ function extendClasses() {
 	// Replace the Card class with an extended version
 	CONFIG.Card.documentClass = PlaceableCard;
 
+/*	Object.defineProperty(Scene, "metadata", {
+		get: function() {
+			return mergeObject(foundry.abstract.Document.metadata, {
+				name: "Scene",
+				collection: "scenes",
+				label: "DOCUMENT.Scene",
+				labelPlural: "DOCUMENT.Scenes",
+				isPrimary: true,
+				embedded: {
+					AmbientLight: foundry.documents.BaseAmbientLight,
+					AmbientSound: foundry.documents.BaseAmbientSound,
+					Drawing: foundry.documents.BaseDrawing,
+					MeasuredTemplate: foundry.documents.BaseMeasuredTemplate,
+					Note: foundry.documents.BaseNote,
+					Tile: foundry.documents.BaseTile,
+					Token: foundry.documents.BaseToken,
+					Wall: foundry.documents.BaseWall,
+					Card: foundry.documents.BaseCard
+				}
+			});
+		}
+	});
+*/
+
+	Object.defineProperty(Scene.prototype, "cardContainer", {
+		get: function () {
+			return game.cards.find(c => c.getFlag("card-slayer", "scene") == this.id);
+		}
+	});
+
+	Object.defineProperty(Scene.prototype, "cards", {
+		get: function () {
+			return this.cardContainer?.data.cards;
+		}
+	});
+
+	const updateEmbeddedDocuments = Scene.prototype.updateEmbeddedDocuments;
+	Scene.prototype.updateEmbeddedDocuments = async function(embeddedName, updates = [], context = {}) {
+		if (embeddedName !== "Card") return await updateEmbeddedDocuments.call(this, embeddedName, updates, context);
+		
+		context.parent = this.cardContainer;
+		context.pack = this.pack;
+		const cls = foundry.documents.BaseCard.implementation;
+
+		updates = updates.map(update => {
+			if (update.x) update["flags.card-slayer.x"] = update.x;
+			if (update.y) update["flags.card-slayer.y"] = update.y;
+			if (update.hidden) update["flags.card-slayer.hidden"] = update.hidden;
+			return update;
+		});
+
+		return cls.updateDocuments(updates, context);
+	}
+
 	// Add property getters to obtain data from flags as if it
 	// were a part of the data schema
 	Object.defineProperty(foundry.data.CardData.prototype, "x", {
 		/** @return {number} The y coordinate of the card, taken from flags */
 		get: function () {
 			return this.flags["card-slayer"]?.x || 0;
+		},
+		set: function (value) {;
+			this.flags["card-slayer"].x = value;
 		}
 	});
 
@@ -44,6 +101,9 @@ function extendClasses() {
 		/** @return {number} The y coordinate of the card, taken from flags */
 		get: function () {
 			return this.flags["card-slayer"]?.y || 0;
+		},
+		set: function (value) {
+			this.flags["card-slayer"].y = value;
 		}
 	});
 
@@ -51,6 +111,9 @@ function extendClasses() {
 		/** @return {boolean} The hidden status of the card, taken from flags */
 		get: function () {
 			return this.flags["card-slayer"]?.hidden || false;
+		},
+		set: function (value) {
+			this.flags["card-slayer"].hidden = value;
 		}
 	});
 
