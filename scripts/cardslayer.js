@@ -40,6 +40,30 @@ Hooks.on("getSceneControlButtons", (controls) => {
 	});
 });
 
+Hooks.on("dropCanvasData", async (canvas, data) => {
+	if (data.type !== "Card") return;
+
+	const pile = game.cards.get(data.cardsId);
+	const card = pile.data.cards.get(data.cardId);
+
+	const tex = await loadTexture(card.img);
+	const ratio = 200 / tex.baseTexture.height;				// 200 is a magic number, should be configured differently later
+
+	const width = card.data.width ?? Math.round(tex.baseTexture.width * ratio);
+	const height = card.data.height ?? Math.round(tex.baseTexture.height * ratio);
+
+	const x = data.x - (width / 2);
+	const y = data.y - (height / 2);
+
+	await card.pass(canvas.cardslayer.cardPile, {
+		updateData: {
+			width, height,
+			"flags.cardslayer.x": x,
+			"flags.cardslayer.y": y
+		}
+	});
+});
+
 
 /**
  * Add the cardslayer to the canvas
