@@ -1,5 +1,9 @@
 {
     "cardslayer": {
-        "title": "CardSlayer"
+        "title": "CardSlayer",
+        "sceneControls": {
+            "title": "Cards",
+            "select": "Select"
+        }
     }
 }

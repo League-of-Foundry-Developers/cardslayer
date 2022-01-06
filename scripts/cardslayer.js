@@ -11,6 +11,25 @@ Hooks.on("init", () => {
 	extendClasses();
 });
 
+Hooks.on("getSceneControlButtons", (controls) => {
+	console.log(controls);
+	controls.push({
+		name: "cardslayer",
+		title: "cardslayer.sceneControls.title",
+		layer: "cardslayer",
+		icon: "fas fa-atlas",
+		activeTool: "select",
+		visible: true,
+		tools: [
+			{
+				name: "select",
+				title: "cardslayer.sceneControls.select",
+				icon: "fas fa-expand"
+			}
+		]
+	});
+});
+
 
 /**
  * Add the cardslayer to the canvas
