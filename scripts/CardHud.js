@@ -24,4 +24,18 @@ export default class CardHud extends BasePlaceableHUD {
 		};
 		this.element.css(position);
 	}
+
+	_onClickControl(event) {
+		const button = event.currentTarget;
+		switch (button.dataset.action) {
+			case "visibility":
+				return this._onToggleVisibility(event);
+			case "play":
+				return this._onPlay(event);
+		}
+	}
+
+	_onPlay(event) {
+		this.object.layer.cardPile.playDialog(this.object.data.document);
+	}
 }
