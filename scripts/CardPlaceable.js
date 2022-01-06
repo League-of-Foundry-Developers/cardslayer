@@ -9,7 +9,6 @@ export default class CardPlaceable extends PlaceableObject {
 		return canvas.cardslayer;
 	}
 
-
 	/***********************
 	 * Copied from Tile
 	 **********************/

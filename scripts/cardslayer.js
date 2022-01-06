@@ -1,3 +1,4 @@
+import CardHud from "./CardHud.js";
 import CardLayer from "./CardLayer.js";
 import CardPlaceable from "./CardPlaceable.js";
 import PlaceableCard from "./PlaceableCard.js";
@@ -9,6 +10,15 @@ import PlaceableCard from "./PlaceableCard.js";
 Hooks.on("init", () => {
 	setUpLayer();
 	extendClasses();
+});
+
+Hooks.on("ready", () => {
+	const hud = document.querySelector("#hud");
+	const cardHud = document.createElement("template");
+	cardHud.id = "card-hud";
+	hud.appendChild(cardHud);
+
+	canvas.hud.cardslayer = new CardHud();
 });
 
 Hooks.on("getSceneControlButtons", (controls) => {
@@ -74,9 +84,9 @@ function extendClasses() {
 		const cls = foundry.documents.BaseCard.implementation;
 
 		updates = updates.map(update => {
-			if (update.x) update["flags.cardslayer.x"] = update.x;
-			if (update.y) update["flags.cardslayer.y"] = update.y;
-			if (update.hidden) update["flags.cardslayer.hidden"] = update.hidden;
+			if (update.x !== undefined) update["flags.cardslayer.x"] = update.x;
+			if (update.y !== undefined) update["flags.cardslayer.y"] = update.y;
+			if (update.hidden !== undefined) update["flags.cardslayer.hidden"] = update.hidden;
 			return update;
 		});
 

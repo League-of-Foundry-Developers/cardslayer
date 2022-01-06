@@ -22,6 +22,10 @@ export default class CardLayer extends PlaceablesLayer {
 
 	static documentName = "Card";
 
+	get hud() {
+		return canvas.hud.cardslayer;
+	}
+
 
 	/**
 	 * The Cards pile object containing the cards for this scene
